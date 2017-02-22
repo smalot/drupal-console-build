@@ -63,13 +63,13 @@ Run all tasks
 drupal build:run
 ````
 
-By specifying only one stage
+Run all tasks of one stage
 
 ````sh
 drupal build:run --stage=cache
 ````
 
-By listing all tasks
+Run speficic tasks
 
 ````sh
 drupal build:run compile_css cache_rebuild
