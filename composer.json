@@ -1,0 +1,24 @@
+{
+    "name": "smalot/drupal-console-build",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastien Malot",
+            "email": "smalot@actualys.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "*",
+        "symfony/process": "*",
+        "symfony/yaml": "*",
+        "drupal/console": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Smalot\\Drupal\\Console\\Build\\": "src/"
+        }
+    }
+}
