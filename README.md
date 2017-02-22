@@ -5,6 +5,13 @@
 
 ## Setup
 
+
+Include this library in your Drupal project:
+
+````sh
+composer require "smalot/drupal-console-build:*"
+````
+
 Must be added in your `settings.yml` file.
 
 ````yaml
