@@ -1,5 +1,7 @@
 {
     "name": "smalot/drupal-console-build",
+    "description": "Expose new commands to Drupal Console to run builds using a config file.",
+    "keywords": ["drupal", "console", "build", "plugin"],
     "type": "library",
     "license": "MIT",
     "authors": [
