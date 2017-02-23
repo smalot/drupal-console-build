@@ -68,6 +68,10 @@ class Command
         $this->only = $build['only'];
         $this->except = $build['except'];
         $this->allowFailure = $build['allow_failure'];
+
+        if (!empty($this->only) && !empty($this->except)) {
+            throw new \InvalidArgumentException("'only' and 'except' attributes can't be set at the same time.");
+        }
     }
 
     /**
@@ -89,9 +93,32 @@ class Command
      */
     public function matchBranch($branch)
     {
-        // Todo
+        // Valid by default if no instructions.
+        if (empty($this->only) && empty($this->except)) {
+            return true;
+        }
 
-        return true;
+        if (!empty($this->only)) {
+            foreach ($this->only as $pattern) {
+                if (preg_match('/^\/.*\/$/', $pattern) && preg_match($pattern, $branch)) {
+                    return true;
+                } elseif ($branch == $pattern) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            foreach ($this->except as $pattern) {
+                if (preg_match('/^\/.*\/$/', $pattern) && preg_match($pattern, $branch)) {
+                    return false;
+                } elseif ($branch == $pattern) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     /**
@@ -101,12 +128,13 @@ class Command
      */
     public function run($folder, OutputInterface $output)
     {
+        $output->writeln('');
         $output->writeln(
           '<info>Run \''.$this->code.'\' task'.($this->stage ? '(stage: \''.$this->stage.'\')' : '').'</info>'
         );
 
         foreach ($this->script as $script) {
-            $output->writeln('<comment>$ '.$script.'</comment>');
+            $output->writeln('$ '.$script);
 
             $process = new Process($script, $folder);
             $status = $process->run(
@@ -122,7 +150,7 @@ class Command
             $output->writeln('');
 
             if ($status) {
-                $output->writeln('<error>The command \''.$script.'\' exited with '.$status.'.</error>');
+                $output->writeln('<error>> The command \''.$script.'\' exited with '.$status.'.</error>');
 
                 if (!$this->allowFailure) {
                     $output->writeln('<error>Stop: failure not allowed</error>');
@@ -132,10 +160,8 @@ class Command
                     $output->writeln('<comment>Continue: failure allowed</comment>');
                 }
             } else {
-                $output->writeln('<comment>The command \''.$script.'\' exited with '.$status.'.</comment>');
+                $output->writeln('<comment>> The command \''.$script.'\' exited with '.$status.'.</comment>');
             }
-
-            $output->writeln('');
         }
 
         return true;

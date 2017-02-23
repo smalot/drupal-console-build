@@ -80,10 +80,10 @@ class Git
             $date = new \DateTime('@'.$date);
 
             return [
-              'id' => $id,
-              'email' => $email,
-              'date' => $date,
-              'message' => $message,
+              'ID' => $id,
+              'Email' => $email,
+              'Date' => $date->format('Y-m-d H:i:s'),
+              'Message' => $message,
             ];
         }
 

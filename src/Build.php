@@ -78,8 +78,18 @@ class Build
      */
     public function run($commands, $branch, $stage = self::STAGE_ALL, $folder, OutputInterface $output)
     {
+        $select = [];
+
+        if (empty($this->stages)) {
+            $select = $this->getCommands($branch, $stage);
+        } else {
+            foreach ($this->stages as $code) {
+                $select = array_merge($select, $this->getCommands($branch, $code));
+            }
+        }
+
         /** @var Command $command */
-        foreach ($this->getCommands($branch, $stage) as $code => $command) {
+        foreach ($select as $code => $command) {
             if (empty($commands) || in_array($code, $commands, true)) {
                 if (!$command->run($folder, $output)) {
                     return false;

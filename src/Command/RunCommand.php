@@ -58,12 +58,14 @@ class RunCommand extends Command
         $branch = $git->getCurrentBranch();
 
         $output->writeln('<comment>GIT repository detected</comment>');
-        $output->writeln('<info>top level</info>: '.$folder);
-        $output->writeln('<info>branch</info>: '.$branch);
-        $output->writeln('<info>last commit</info>: '.json_encode($git->getLastCommit()));
+        $output->writeln('<info>Top level</info>: '.$folder);
+        $output->writeln('<info>Branch</info>: '.$branch);
+        $output->writeln('<info>Last commit:</info>');
 
-        $output->writeln('');
-        $output->writeln('<comment>Run build</comment>');
+        $commit = $git->getLastCommit();
+        foreach ($commit as $label => $value) {
+            $output->writeln('  <info>'.$label.'</info>: '.$value);
+        }
 
         $build = new Build();
         $build->load($folder);

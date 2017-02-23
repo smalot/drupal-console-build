@@ -5,7 +5,6 @@
 
 ## Setup
 
-
 Include this library in your Drupal project:
 
 ````sh
@@ -32,13 +31,14 @@ services:
 
 ## Sample config file
 
-
 ````yaml
+# List stages enabled
 stages:
     - compile
     - cache
     - features
 
+# Commands section
 compile_css:
     stage: compile
     script:
@@ -56,10 +56,27 @@ features_revert:
     stage: features
     script:
         - echo "Features revert all"
-        - drush fra -y
+        - cd web && drush fra -y
     except:
         - master
 ````
+
+
+### Settings
+
+`stages` allows to group commands and to order them during process.
+If `stages` entry is specified, all commands without `stage` attribute won't be run.
+
+Both `only` and `except` accepts regex patterns (must be surrounded by backslash `/`).
+
+````yaml
+command:
+    only:
+        - "/^fix-.*$/i"
+````
+
+The `allow_failure` will report a command in error, but won't stop future commands.
+Otherwise, the whole build will stop at the first command line error.
 
 
 ## Usage
@@ -76,7 +93,7 @@ Run all tasks of one stage
 drupal build:run --stage=cache
 ````
 
-Run speficic tasks
+Run specific tasks
 
 ````sh
 drupal build:run compile_css cache_rebuild
