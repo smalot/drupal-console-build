@@ -40,6 +40,9 @@ services:
 
 ## Sample config file
 
+File: `.build.yml`
+should be at the same folder level as the `.git/`.
+
 ````yaml
 # List stages enabled
 stages:
