@@ -1,6 +1,13 @@
 # Drupal Console Build
 
+[![Latest Stable Version](https://poser.pugx.org/smalot/drupal-console-build/v/stable)](https://packagist.org/packages/smalot/drupal-console-build)
+[![Latest Unstable Version](https://poser.pugx.org/smalot/drupal-console-build/v/unstable)](https://packagist.org/packages/smalot/drupal-console-build)
+[![License](https://poser.pugx.org/smalot/drupal-console-build/license)](https://packagist.org/packages/smalot/drupal-console-build)
+[![composer.lock](https://poser.pugx.org/smalot/drupal-console-build/composerlock)](https://packagist.org/packages/smalot/drupal-console-build)
 
+[![Total Downloads](https://poser.pugx.org/smalot/drupal-console-build/downloads)](https://packagist.org/packages/smalot/drupal-console-build)
+[![Monthly Downloads](https://poser.pugx.org/smalot/drupal-console-build/d/monthly)](https://packagist.org/packages/smalot/drupal-console-build)
+[![Daily Downloads](https://poser.pugx.org/smalot/drupal-console-build/d/daily)](https://packagist.org/packages/smalot/drupal-console-build)
 
 
 ## Setup
