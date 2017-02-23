@@ -1,5 +1,7 @@
 # Drupal Console Build
 
+Expose new commands to `Drupal Console` to run builds using a config file.
+
 [![Latest Stable Version](https://poser.pugx.org/smalot/drupal-console-build/v/stable)](https://packagist.org/packages/smalot/drupal-console-build)
 [![Latest Unstable Version](https://poser.pugx.org/smalot/drupal-console-build/v/unstable)](https://packagist.org/packages/smalot/drupal-console-build)
 [![License](https://poser.pugx.org/smalot/drupal-console-build/license)](https://packagist.org/packages/smalot/drupal-console-build)
