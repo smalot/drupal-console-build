@@ -77,6 +77,7 @@ features_revert:
 If `stages` entry is specified, all commands without `stage` attribute won't be run.
 
 Both `only` and `except` accepts regex patterns (must be surrounded by backslash `/`).
+You can't specify `only` and `except` at the same time.
 
 ````yaml
 command:
